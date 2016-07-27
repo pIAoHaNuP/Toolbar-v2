@@ -1,0 +1,28 @@
+@mixin transition($transition) {				//封装一个transition兼容各浏览器的函数
+	-webkit-transition: $transition;			//Safari和chrome
+	   -moz-transition: $transition;			//Firefox
+	    -ms-transition: $transition;			//IE
+	     -o-transition: $transition;			//Opera
+	        transition: $transition;
+}
+
+@mixin transform-origin($origin) {				//封装一个transition-origin兼容各浏览器的函数
+	-webkit-transform-origin: $origin;
+	   -moz-transform-origin: $origin;
+	    -ms-transform-origin: $origin;
+	     -o-transform-origin: $origin;
+	        transform-origin: $origin;
+}
+
+@mixin scale($scale) {							//封装一个scale兼容各浏览器的函数
+	-webkit-transform: scale($scale);
+	   -moz-transform: scale($scale);
+	    -ms-transform: scale($scale);
+	     -o-transform: scale($scale);
+	        transform: scale($scale);
+}
+
+@mixin opacity($opacity) {						//封装一个opacity兼容IE的函数
+	opacity: $opacity;
+	filter: alpha(opacity=$opacity*100);		//兼容IE的写法
+}

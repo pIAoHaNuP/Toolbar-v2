@@ -1,0 +1,72 @@
+@mixin toolbar-item($pos, $hoverPos) {				//封装一个函数
+	background-position: 0 $pos;
+	
+	&:hover {
+		background-position: 0 $hoverPos;
+	}
+}
+
+$toolbar-size: 52px;
+.toolbar {
+	position: fixed;
+	left: 50%;
+	bottom: 5px;
+	margin-left: -$toolbar-size / 2;				//使用变量保存数据利于以后的修改
+}
+
+.toolbar-item {
+	position: relative;
+	display: block;
+	width: $toolbar-size;
+	height: $toolbar-size;
+	background-image: url(../img/toolbar.png);
+	background-repeat: no-repeat;
+	margin-top: 1px;
+	@include transition(background-position 1s);	//引入封装的函数
+
+	&:hover {
+		.toolbar-layer {
+			@include opacity(1);
+			@include scale(1);
+		}
+	}
+}
+
+.toolbar-item-weixin {
+	@include toolbar-item(-798px, -860px);			//替换原来的设置
+
+	.toolbar-layer {
+		height: 212px;
+		background-position: 0 0;
+	}
+}
+
+.toolbar-item-feedback {
+	@include toolbar-item(-426px, -488px);
+}
+
+.toolbar-item-app {
+	@include toolbar-item(-550px, -612px);
+
+	.toolbar-layer {
+		height: 194px;
+		background-position: 0 -222px;
+	}
+}
+
+.toolbar-item-top {
+	@include toolbar-item(-674px, -736px);
+}
+
+.toolbar-layer {
+	position: absolute;
+	right: $toolbar-size - 6;
+	bottom: -10px;
+	width: 172px;
+	background-image: url(../img/toolbar.png);
+	background-repeat: no-repeat;
+	@include opacity(0);
+	@include transform-origin(95% 95%);				//调整变化的基准点
+	@include scale(0.01);
+	@include transition(all 1s);
+}
